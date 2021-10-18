@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+		img
+			{
+			width:300px;
+			}
+
+		#cardboard
+			{
+			width:100%;
+			}
+		td
+			{
+			width:25%;
+			;}
+
+		</style>
+
+		<script type="text/javascript">
+			window.onload = function()
+				{
+				let card1 = false;
+				let card1id;
+				let card2 = false;
+				let card2id;
+				let open = false;
+
+				openCard = function()
+					{
+					console.warn(2)
+					this.src = this.className+".jpg";
+					if(card1) {card2 = this; setTimeout(checkCards,2000);}
+					else{card1 = this}
+					;}
+
+				checkCards = function()
+				{
+
+				if(card1.className == card2.className && card1.id!=card2.id)
+					{
+					card1.style.display = "none";
+					card2.style.display = "none";
+					;}
+				else
+					{
+					card1.src = "back.jpg";
+					card2.src = "back.jpg";
+
+					;}
+				card1 = false;
+				card2 = false;
+				;}
+
+			let CARDS = document.getElementsByTagName("img");
+			for (let card of CARDS)
+				{
+				console.warn(card)
+				card.onclick = openCard;
+				;}
+			;}
+		</script>
+	</head>
+	<body>
+		<table id=cardboard>
+			<tr>
+				<td><img src="back.jpg" class=card1 id=11></td>
+				<td><img src="back.jpg" class=card4 id=41></td>
+				<td><img src="back.jpg" class=card1 id=12></td>
+				<td><img src="back.jpg" class=card3 id=31></td>
+			</tr>
+			<tr>
+				<td><img src="back.jpg" class=card2 id=21></td>
+				<td><img src="back.jpg" class=card2 id=22></td>
+				<td><img src="back.jpg" class=card3 id=32></td>
+				<td><img src="back.jpg" class=card4 id=11></td>
+			</tr>
+		</table>
+	</body>
+</html>
