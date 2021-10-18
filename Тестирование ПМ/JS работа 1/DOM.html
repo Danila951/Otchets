@@ -1,0 +1,42 @@
+<html>	
+	<head>
+		<meta charset="utf-8">
+		<style>
+		
+
+		</style>
+
+				
+		
+	</head>
+	<body>
+	
+		<form action="" name="userdata">
+			<ol type=1>		
+				<script type="text/javascript">
+					document.write("<LI>ФИО: <INPUT name=fio type=text size=30 maxlength=30 value=" + prompt("Введите ФИО") + "></LI><BR>");
+					document.write("<LI>Пол: <SELECT name=gender>");
+					if(confirm("Ваш пол мужской?")){document.write("<OPTION value=male selected>Мужской</OPTION><OPTION value=female>Женский</OPTION></SELECT></LI><BR>");}
+					else{document.write("<OPTION value=male >Мужской</OPTION><OPTION value=female selected>Женский</OPTION></SELECT></LI><BR>");}
+					document.write("<LI>Email: <INPUT name=email type=email size=30 maxlength=30 value=" + prompt("Введите адрес электрической почты") + "></LI><BR>");
+					document.write("<LI>Поклонение летающему макаронному монстру?: <INPUT type=checkbox ");
+					if(confirm("Вы поклоняетесь летающему макаронному монстру?")){document.write("checked");}
+					document.write(" name=monster></LI><BR>");
+					document.write("<INPUT type=submit value=Зарегистрировать>");	
+				</script>				
+			</ol>
+		</form>
+		<script type="text/javascript">
+			changeData = function()
+				{
+				document.forms.userdata.elements.fio.value = prompt("Измените ваши ФИО");
+				if(confirm("Ваш пол мужской?")){document.forms.elements.gender.options[0].selected= true;}
+				else{document.forms.elements.gender.options[1].selected = true;}
+				document.forms.userdata.elements.email.value = prompt("Измените ваш email");
+				if(!confirm("Вы поклоняетесь летающему макаронному монстру?")){document.forms.userdata.elements[4].checked = false;}				
+				;}
+			if(!confirm("Все ли данные введены верно?")){changeData();}
+		</script>	
+		
+	</body>
+</html>

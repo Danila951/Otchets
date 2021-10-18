@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<script>
+		let n=101;
+		let res="Числа: ";
+		let сумма=0;
+		let count=0;
+		nextPrime:
+		for (let i = 2; i <= n; i++) { 
+  			for (let j = 2; j < i; j++) { 
+    				if (i % j == 0) continue nextPrime;
+  				}
+			res = res + i + ", "
+			сумма = сумма + i
+			count =  count + 1
+  				
+			}
+			alert(res + ", Сумма: " + сумма + ", Количество: " + count); 
+		</script>
+	</body>
+</html>
