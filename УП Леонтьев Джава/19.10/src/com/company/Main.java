@@ -7,12 +7,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Book b = new Book("fgdg", "1234", 25);
+        /*Book b = new Book("fgdg", "1234", 25);
 
         List<Book> b1 = new ArrayList<>(Arrays.asList(
                 null,
                 null,
-                b
+                b,
+                new Book("resty", "rst", 25)
         ));
 
 
@@ -21,6 +22,8 @@ public class Main {
         library.addBook("erfgdg", "1234", 25);
         System.out.println(library);
         library.removeBook("fgdg", "1234", 25);
-        System.out.println(library);
+        System.out.println(library);*/
+
+
     }
 }
