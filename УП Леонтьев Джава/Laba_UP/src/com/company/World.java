@@ -22,11 +22,11 @@ public class World {
     }
 
     public void updateWorld() {
-        for(int i=entities.size()-1;i>0;i--){
+        for(int i=entities.size()-1;i>=0;i--){
             entities.get(i).update();
         }
 
-        for(int i=entities.size()-1;i>0;i--){
+        for(int i=entities.size()-1;i>=0;i--){
             if (entities.get(i).health <= 0) {
                 entities.remove(i);
             }
@@ -39,7 +39,7 @@ public class World {
 
     public List<Entity> getEntitiesInRegion(int x, int z, double range) {
         List<Entity> entities2  = new ArrayList<>();
-        for(int i=entities.size()-1;i>0;i--){
+        for(int i=entities.size()-1;i>=0;i--){
             if (sqrt(pow(entities.get(i).xPos - x,2) + pow(entities.get(i).zPos - z,2)) < range) {
                 entities2.add(entities.get(i));
             }
@@ -50,7 +50,7 @@ public class World {
 
     public List<Entity> getEntitiesNearEntity(Entity entity, double range) {
         List<Entity> entities2  = new ArrayList<>();
-        for(int i=entities.size()-1;i>0;i--){
+        for(int i=entities.size()-1;i>=0;i--){
             if (sqrt(pow(entities.get(i).xPos - entity.getxPos(),2) + pow(entities.get(i).zPos - entity.getzPos(),2)) < range) {
                 entities2.add(entities.get(i));
             }
@@ -61,8 +61,8 @@ public class World {
 
     public List<EntityGuard> getGuardiansInRegion(int x, int z, double range) {
         List<EntityGuard> entities2  = new ArrayList<>();
-        for(int i=entities.size()-1;i>0;i--){
-            if (entities.getClass() == EntityGuard.class && sqrt(pow(entities.get(i).xPos - x,2) + pow(entities.get(i).zPos - z,2)) <= range) {
+        for(int i=entities.size()-1;i>=0;i--){
+            if (entities.get(i).getClass() == EntityGuard.class && sqrt(pow(entities.get(i).xPos - x,2) + pow(entities.get(i).zPos - z,2)) <= range) {
                 entities2.add((EntityGuard) entities.get(i));
             }
         }

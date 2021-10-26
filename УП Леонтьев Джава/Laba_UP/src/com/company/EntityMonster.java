@@ -1,5 +1,8 @@
 package com.company;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 public class EntityMonster extends Entity {
     private double damage;
 
@@ -19,5 +22,39 @@ public class EntityMonster extends Entity {
     @Override
     public void update() {
         super.update();
+
+        World world = GameServer.INSTANCE.getWorld();
+        double dist = 99999;
+        int j = -1;
+
+        for(int i=world.getEntities().size()-1;i>=0;i--){
+            if (world.getEntities().get(i).getClass() == EntityPlayer.class) {
+                if (sqrt(pow(world.getEntities().get(i).xPos - this.xPos,2) + pow(world.getEntities().get(i).zPos - this.zPos,2)) < dist) {
+                    dist = sqrt(pow(world.getEntities().get(i).xPos - this.xPos,2) + pow(world.getEntities().get(i).zPos - this.zPos,2));
+                    j = i;
+                }
+            }
+        }
+        if(dist > 2){
+            if (world.getEntities().get(j).xPos == this.xPos) {
+
+            } else if (world.getEntities().get(j).xPos < this.xPos) {
+                this.xPos--;
+            } else {
+                this.xPos++;
+            }
+
+            if (world.getEntities().get(j).zPos == this.zPos) {
+
+            } else if (world.getEntities().get(j).zPos < this.zPos) {
+                this.zPos--;
+            } else {
+                this.zPos++;
+            }
+        } else {
+            System.out.println(this.title + " бьет " + world.getEntities().get(j).getTitle()  + " на " + damage);
+            world.getEntities().get(j).attackEntityFrom(this, damage);
+            System.out.println("Теперь здоровье " + world.getEntities().get(j).getTitle() + " равняется " + world.getEntities().get(j).getHealth());
+        }
     }
 }

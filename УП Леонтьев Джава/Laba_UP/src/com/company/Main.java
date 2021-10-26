@@ -1,10 +1,37 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
 
+        List<Entity> entities  = new  ArrayList<>(Arrays.asList(
+                new EntityGuard("resty", 4, 6, 10, 10),
+                new EntityGuard("resty1", -4, 9, 10, 10),
+                new EntityGuard("resty2", 11, 1, 10, 10),
+                new EntityGuard("resty3", 3, -2, 10, 10),
+                new EntityGuard("resty4", 8, 4, 10, 10),
 
+                new EntityMonster("Monster 1", 3, 8, 80, 75, 7),
+                new EntityMonster("Monster 2", -3, 5, 10, 10, 3),
+                new EntityMonster("Monster 3", 6, -4, 10, 10, 4),
+                new EntityMonster("Monster 4", 4, -8, 10, 10, 1),
+                new EntityMonster("Monster 5", 11, 21, 10, 10, 5),
+
+                new EntityPlayer("Player", 2, 8, 70, 69, 2)
+        ));
+
+        World world = new World(entities);
+
+        GameServer gameServer = new GameServer(world);
+
+        for (int i=0;i<20;i++) {
+            System.out.println("Итераця " + i);
+            gameServer.updateServer();
+        }
 
 
 

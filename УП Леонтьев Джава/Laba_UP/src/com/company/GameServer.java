@@ -5,10 +5,10 @@ public class GameServer {
     private World world; //мир c сущностями
     private int updateCounter; //колчество обновлений сервера
 
-    public GameServer(World world, int updateCounter) {
+    public GameServer(World world) {
         INSTANCE = this;
         this.world = world;
-        this.updateCounter = updateCounter;
+        this.updateCounter = 0;
     }
 
     public World getWorld() {
