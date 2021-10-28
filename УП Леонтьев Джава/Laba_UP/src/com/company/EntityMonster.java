@@ -11,13 +11,7 @@ public class EntityMonster extends Entity {
         this.damage = damage;
     }
 
-    public double getDamage() {
-        return damage;
-    }
 
-    public void setDamage(double damage) {
-        this.damage = damage;
-    }
 
     @Override
     public void update() {
@@ -52,5 +46,13 @@ public class EntityMonster extends Entity {
             world.getEntities().get(j).attackEntityFrom(this, damage);
             System.out.println("Теперь здоровье " + world.getEntities().get(j).getTitle() + " равняется " + world.getEntities().get(j).getHealth());
         }
+    }
+
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
     }
 }
