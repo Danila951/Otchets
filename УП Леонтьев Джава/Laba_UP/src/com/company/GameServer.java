@@ -1,11 +1,11 @@
 package com.company;
 
-public class GameServer {
+public class GameServer { //Основной класс
     public static GameServer INSTANCE;
     private World world; //мир c сущностями
     private int updateCounter; //колчество обновлений сервера
 
-    public GameServer(World world) {
+    public GameServer(World world) { //контруктор
         INSTANCE = this;
         this.world = world;
         this.updateCounter = 0;

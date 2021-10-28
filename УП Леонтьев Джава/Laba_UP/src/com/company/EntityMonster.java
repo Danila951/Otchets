@@ -25,7 +25,7 @@ public class EntityMonster extends Entity {
 
         World world = GameServer.INSTANCE.getWorld();
         double dist = 99999;
-        int j = -1;
+        int j = 0;
 
         for(int i=world.getEntities().size()-1;i>=0;i--){
             if (world.getEntities().get(i).getClass() == EntityPlayer.class) {
@@ -35,23 +35,19 @@ public class EntityMonster extends Entity {
                 }
             }
         }
-        if(dist > 2){
-            if (world.getEntities().get(j).xPos == this.xPos) {
-
-            } else if (world.getEntities().get(j).xPos < this.xPos) {
+        if(dist > 2 && dist != 99999){
+            if (world.getEntities().get(j).xPos < this.xPos) {
                 this.xPos--;
             } else {
                 this.xPos++;
             }
 
-            if (world.getEntities().get(j).zPos == this.zPos) {
-
-            } else if (world.getEntities().get(j).zPos < this.zPos) {
+            if (world.getEntities().get(j).zPos < this.zPos) {
                 this.zPos--;
             } else {
                 this.zPos++;
             }
-        } else {
+        } else if(dist != 99999){
             System.out.println(this.title + " бьет " + world.getEntities().get(j).getTitle()  + " на " + damage);
             world.getEntities().get(j).attackEntityFrom(this, damage);
             System.out.println("Теперь здоровье " + world.getEntities().get(j).getTitle() + " равняется " + world.getEntities().get(j).getHealth());
