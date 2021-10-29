@@ -9,11 +9,11 @@ public class Main {
     public static void main(String[] args) {
 
         List<Entity> entities  = new  ArrayList<>(Arrays.asList(
-                new EntityGuard("resty", 4, 6, 10, 10),
-                new EntityGuard("resty1", -4, 9, 10, 10),
-                new EntityGuard("resty2", 11, 1, 10, 10),
-                new EntityGuard("resty3", 3, -2, 10, 10),
-                new EntityGuard("resty4", 8, 4, 10, 10),
+                new EntityGuard("Guard 1", 4, 6, 10, 10),
+                new EntityGuard("Guard 2", -4, 9, 10, 10),
+                new EntityGuard("Guard 3", 11, 1, 10, 10),
+                new EntityGuard("Guard 4", 3, -2, 10, 10),
+                new EntityGuard("Guard 5", 8, 4, 10, 10),
 
                 new EntityMonster("Monster 1", 3, 8, 80, 75, 7),
                 new EntityMonster("Monster 2", -3, 5, 10, 10, 3),
