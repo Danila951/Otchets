@@ -1,0 +1,92 @@
+<HTML>
+	<HEAD>
+		<META charset=utf-8>
+		<STYLE>
+			body{
+				background:url("background.png") no-repeat;
+				background-position:center;
+				background-size:90%;
+				cursor:none;
+				;}
+			#bird{
+				width:150px;
+				height:150px;
+				position:absolute;
+				;}
+			#pointer{
+				width:0px;
+				height:0px;
+				transform-origin:left center;
+				position:absolute;
+				transition:width 1s linear;
+				;}
+			#aim	{
+				
+				width:50px;
+				position:absolute;
+				left:-100px;
+				;}
+
+		</STYLE>
+		<SCRIPT>
+			window.onload = function()
+				{
+				let angle = null;
+				let muzzleEnergy = null;
+				let idFly = null;
+				pointer.style.left = (screen.width * 0.2) + "px";
+				pointer.style.top = (screen.height * 0.6) + "px";
+				bird.style.left = (screen.width * 0.1) + "px";
+				bird.style.bottom = (screen.height * 0.1) + "px";	
+				bird.style.top = getComputedStyle(bird,'').top;
+				let floor = bird.style.top;
+				
+				function movePointer(event)
+					{					
+					let adjacentLeg = event.pageX - parseInt(pointer.style.left);
+					let oppositeLeg = parseInt(pointer.style.top) + 50 - event.pageY;
+					angle = Math.atan((oppositeLeg)/(adjacentLeg));
+					pointer.style.transform = "rotate(-" + angle + "rad)";	
+					pointer.style.width = screen.width * 0.15 + "px";
+					pointer.style.height = "100px";
+					;}
+					
+				window.onmousedown = function()	
+					{
+					movePointer(event);					
+					window.addEventListener("mousemove", movePointer);		
+					return false;
+					;}
+
+				window.onmouseup = function(event)	
+					{
+					if(event.pageX < parseInt(bird.style.left) || event.pageY > parseInt(bird.style.top)){location.reload();}
+					pointer.style.width = "0px";
+					pointer.style.height = "0px";
+					window.removeEventListener("mousemove", movePointer);
+					muzzleEnergy = 100000/Math.round(parseInt(getComputedStyle(pointer).width));
+					pointer.style.display = "none";
+					bird.style.left = event.pageX - 75 + "px";
+					bird.style.top = event.pageY - 75 + "px";
+					bird.style.transition="left " + muzzleEnergy + "ms ease-out, top " + muzzleEnergy + "ms linear";
+					setTimeout(function(){bird.style.top = floor;}, muzzleEnergy/2);
+					setTimeout(function(){location.reload();}, muzzleEnergy);
+					window.onmouseup = null;
+					window.onmousedown = null;					
+					;}	
+				window.onmousemove = function(event)
+					{
+					aim.style.left = event.pageX - 25;
+					aim.style.top = event.pageY -25;
+					;}
+				
+				;}
+		</SCRIPT>		
+	<BODY>
+		<IMG src="bird.png" id=bird>
+		<IMG src="pointer.png" id=pointer>
+		<IMG src="aim.png" id=aim width=50>
+	</BODY>
+</HTML>
+		
+		

@@ -1,0 +1,85 @@
+<HTML>
+	<HEAD>
+		<META charset=utf-8>
+		<STYLE>
+			.halfscreen
+				{
+				width:50%;
+				height:100%;
+				float:left;
+				margin:0px;
+				text-align: center;
+				padding-top:200px;
+
+				;}
+				
+			.button {
+				background-color: #4CAF50; 
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 24pt;
+				;}
+			.screen	{
+				width:50%;
+				height:30%;
+				border: 1px solid black;	
+				display: inline-block;
+				font-size: 36pt;
+				border-radius:5%;
+				padding-top: 100px;
+				background-color:white;
+				;}
+			.visitors{
+				font-size:24pt;
+				;}
+			
+
+		</STYLE>
+		<SCRIPT>
+			window.onload = function()
+				{
+				let VISITORS = [];
+				let x = 0;
+				take.onclick = function()
+					{
+					
+					VISITORS.push("A"+ parseInt(VISITORS.length + x));
+					takescreen.innerHTML = (VISITORS[VISITORS.length-1]) +"<div class='visitors'> Перед вами " + (VISITORS.length-1) + " человек</div>";
+					
+					;}				
+				next.onclick = function()
+					{
+					currentVisitor = VISITORS.shift();
+				if(currentVisitor !=undefined) {
+					nextscreen.innerHTML =  "<div class='visitors'>Следующий номер</div>" + currentVisitor;
+				} else {nextscreen.innerHTML =  "<div class='visitors'>Вам уже не нужна эта информация</div>";
+				} 
+				if(VISITORS[VISITORS.length-1] !=undefined) {
+					takescreen.innerHTML = (VISITORS[VISITORS.length-1]) +"<div class='visitors'> Перед вами " + (VISITORS.length-1) + " человек</div>";
+					x++;
+				} else {takescreen.innerHTML =  "<div class='visitors'>Вы уже вошли</div>";
+				} 
+					div2.style.cssText = 'background:url("operator.png") no-repeat';
+					setTimeout("div2.style.cssText = ''",100);
+					;}
+				;}
+		</SCRIPT>		
+	<BODY>
+		<div id=div1 class=halfscreen>
+			<div class=button id=take>Получить номерок</div><br><br>
+			<div class=screen id=takescreen></div>
+		
+		
+		</div>
+		<div id=div2 class=halfscreen>
+			<div class=button id=next>Следующий</div><br><br>
+			<div class=screen id=nextscreen></div>
+		</div>
+	</BODY>
+</HTML>
+		
+		
