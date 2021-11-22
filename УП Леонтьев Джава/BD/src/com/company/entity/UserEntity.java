@@ -1,7 +1,5 @@
 package com.company.entity;
 
-import com.company.manager.Manager;
-
 import java.util.Objects;
 
 public class UserEntity {
