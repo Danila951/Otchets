@@ -6,6 +6,8 @@ import com.company.entity.UserEntity;
 import com.company.manager.ManufacturerEntityManager;
 import com.company.manager.ProuctEntityManager;
 import com.company.manager.UserEntytiManager;
+import com.company.ui.InfoForm;
+import com.company.ui.TestForm;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -38,7 +40,7 @@ public class Main {
 */
         ManufacturerEntity man = new ManufacturerEntity("Loh",new Date(123));
 
-        try {
+        /*try {
             System.out.println(man);
             ManufacturerEntityManager.insert(man);
             System.out.println(man);
@@ -50,7 +52,11 @@ public class Main {
             System.out.println(ManufacturerEntityManager.selectById(66));
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        new TestForm();
+
+        //new InfoForm();
 
     }
 
