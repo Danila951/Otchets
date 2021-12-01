@@ -30,50 +30,47 @@
 		</STYLE>
 		<SCRIPT>
 			window.onload = function()
-				{
-				let WRONGWORDS = [];
-				
-				replacebutton.onclick = function()
-					{
-					let currentLetterFirst = 0;
-					let currentLetterLast = 0;
-					let editedText = "";
-					let textForEdit= "";
-					if(!wrongwordfield.value.match(/^[А-Яа-я]*$/) || !replacewordfield.value.match(/^[А-Яа-я]*$/) || wrongwordfield.value == "" || replacewordfield.value == ""){return;}
-					for(let index in WRONGWORDS)
-						{
-						if(WRONGWORDS[index] == replacewordfield.value)
-						{WRONGWORDS.splice(index,1);}	
-						;}
-					for(let wrongword of WRONGWORDS)
-						{
-						if (wrongwordfield.value == wrongword){return;}
-						;}						
-					WRONGWORDS.push(wrongwordfield.value);
+{
+let WRONGWORDS = [];
 
-					while(law.innerHTML.indexOf(wrongwordfield.value, currentLetterFirst) != -1)
-						{
-						
-						currentLetterLast = law.innerHTML.indexOf(wrongwordfield.value, currentLetterLast) + wrongwordfield.value.length;
-						textForEdit = law.innerHTML.substring(currentLetterFirst, currentLetterLast);
-						editedText += textForEdit.replace(wrongwordfield.value, replacewordfield.value);
-						currentLetterFirst = currentLetterLast;
-						
-						;}
-					law.innerHTML = editedText + law.innerHTML.substring(currentLetterLast, law.innerHTML.length);
-					
-					;}
-				showbutton.onclick = function()
-					{
-					
-					WRONGWORDS.sort();	
-					wrongwordslist.innerHTML = "";
-					for(let wrongword of WRONGWORDS)
-						{
-						wrongwordslist.innerHTML += "<LI>" + wrongword + "</LI>"; 
-						;}					
-					;}				
-				;}
+replacebutton.onclick = function()
+{
+let currentLetterFirst = 0;
+let currentLetterLast = 0;
+let editedText = "";
+let textForEdit= "";
+if(!wrongwordfield.value.match(/^[А-Яа-я]*$/) || !replacewordfield.value.match(/^[А-Яа-я]*$/) || wrongwordfield.value == "" || replacewordfield.value == ""){return;}
+console.log(1);
+for(let index in WRONGWORDS)
+{
+if(WRONGWORDS[index] == replacewordfield.value){WRONGWORDS.splice(index,1);}
+;}
+for(let wrongword of WRONGWORDS)
+{
+if (wrongwordfield.value == wrongword){return;}
+;}
+WRONGWORDS.push(wrongwordfield.value);
+
+while(law.innerHTML.indexOf(wrongwordfield.value, currentLetterLast) != -1)
+{
+currentLetterLast = wrongwordfield.value.length + law.innerHTML.indexOf(wrongwordfield.value, currentLetterLast);
+textForEdit = law.innerHTML.substring(currentLetterFirst, currentLetterLast);
+editedText += textForEdit.replace(wrongwordfield.value, replacewordfield.value);
+currentLetterFirst = currentLetterLast;
+;}
+
+law.innerHTML = editedText + law.innerHTML.substring(currentLetterLast, law.innerHTML.length);
+;}
+showbutton.onclick = function()
+{
+WRONGWORDS.sort();
+wrongwordslist.innerHTML = "";
+for(let wrongword of WRONGWORDS)
+{
+wrongwordslist.innerHTML += "<LI>" + wrongword + "</LI>";
+;}
+;}
+;}
 		</SCRIPT>		
 	<BODY>
 			<div id=menu><form>
