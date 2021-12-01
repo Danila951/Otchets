@@ -1,0 +1,112 @@
+<HTML>
+	<HEAD>
+		<META charset=utf-8>
+		<STYLE>
+		p{
+			text-align:justify;
+			font-size:18pt;
+		}
+		.right{
+			text-align:right;
+		}
+		body{
+			margin-left:25%;
+			margin-right:25%;
+		;}	
+		li{
+			font-size:18pt;		
+		;}
+		#menu{
+			font-family:monospace;
+			border:1px solid black;
+			width:19%;
+			position:fixed;
+			left:1%;
+			padding:10px;
+		;}
+		.menutext{
+			font-size:12pt;
+			;}
+		</STYLE>
+		<SCRIPT>
+			window.onload = function()
+				{
+				let WRONGWORDS = [];
+				let i;
+				let currentLetterFirst = 0;
+				let currentLetterLast = 0;
+				let editedText = "";
+				let textForEdit= "";
+				replacebutton.onclick = function()
+					{
+					if(!wrongwordfield.value.match(/^[А-Яа-я]*$/) || !replacewordfield.value.match(/^[А-Яа-я]*$/) || wrongwordfield.value == "" || replacewordfield.value == ""){return;}
+					for(let index in WRONGWORDS)
+						{
+						if(WRONGWORDS[index] == replacewordfield.value){delete WRONGWORDS[index];}	
+						;}
+					for(let wrongword of WRONGWORDS)
+						{
+						if (wrongwordfield.value == wrongword){return;}
+						;}						
+					WRONGWORDS.push(wrongwordfield.value);
+					console.log(WRONGWORDS);
+
+					currentLetterLast =  law.innerHTML.indexOf(wrongwordfield.value, currentLetterFirst) + wrongwordfield.value.length;
+					while(law.innerHTML.indexOf(wrongwordfield.value, currentLetterFirst) != -1)
+						{
+						
+						currentLetterLast =  law.innerHTML.indexOf(wrongwordfield.value, currentLetterLast) + wrongwordfield.value.length;
+						textForEdit = law.innerHTML.substring(currentLetterFirst, currentLetterLast);
+						editedText += textForEdit.replace(wrongwordfield.value, replacewordfield.value);
+						currentLetterFirst = currentLetterLast;
+						
+						;}
+					law.innerHTML = editedText + law.innerHTML.substring(currentLetterLast, law.innerHTML.length);
+					
+					;}
+				showbutton.onclick = function()
+					{
+					
+					WRONGWORDS.sort();	
+					wrongwordslist.innerHTML = "";
+					for(let wrongword of WRONGWORDS)
+						{
+						wrongwordslist.innerHTML += "<LI>" + wrongword + "</LI>"; 
+						;}					
+					;}				
+				;}
+		</SCRIPT>		
+	<BODY>
+			<div id=menu><form>
+				<p class=menutext>Заменяемое слово: <input type=text size=20 id=wrongwordfield></p>				
+				<p class=menutext>Заменяющее слово: <input type=text size=20 id=replacewordfield> </p>
+				<input type=button value=Заменить id=replacebutton><br><br>
+				<input type=button id=showbutton value=Отобразить замененные слова>
+				<ol id=wrongwordslist>
+				</ol>
+			</div>
+			<p class=right>Вносится депутатами Государственной Думы</p>
+			<p class=right>И.В.Лебедевым, С.В.Ивановым </p>
+			<p class=right>Проект</p>
+			<div id=law>
+				<h1 align=center>ФЕДЕРАЛЬНОГО ЗАКОНА</h1>
+				<h2 align=center>О внесении изменений в статью 16 Федерального закона
+				"О свободе совести и о религиозных объединениях" и в Кодекс Российской Федерации об административных правонарушениях</h2>
+				<p>Статья 1</p>
+				<p>Внести в статью 16 Федерального закона от 26.09.1997 N 125-ФЗ "О свободе совести и о религиозных объединениях" (Собрание законодательства Российской Федерации 1997, N 39, ст.4465; 2002, N 12, ст. 1093; 2003, N 50, ст. 4855; 2004, N 27, ст. 2711; 2008, N 30, ст. 3616; 2011, N 27, ст. 3880) изменение, дополнив её пунктом 2.1  следующего содержания:</p>
+				<p>"2.1 Молитвенный обряд, а также религиозные обряды, <b>сопряженные с насильственными действиями в отношении  человека или животного беспрепятственно совершаются </b> в культовых зданиях и сооружениях, местах и объектах, специально предназначенных для богослужений, молитвенных и религиозных собраний, религиозного почитания (паломничества), в учреждениях и  на предприятиях религиозных организаций, а также  в жилых помещениях.</p>
+				<p>В иных местах совершение молитвенного обряда, а также религиозных обрядов, сопряженных с насильственными действиями в отношении  человека или животного осуществляется в порядке, установленном нормативно правовыми актами субъектов Российской Федерации."</p>
+				<p>Статья 2</p>
+				<p>Внести в Кодекс Российской Федерации об административных правонарушениях (Собрание законодательства Российской Федерации, 2002, N 1, ст. 1; 2006, N 43, ст. 4412; N 50, ст. 5279; 2007, N 26, ст. 3089; N 31, ст. 4007; N 46, ст. 5553) изменение дополнив статьёй 20.30 следующего содержания:
+				"Статья 20.30. Нарушение установленного порядка совершения молитвенного обряда, а также религиозных обрядов, сопряженных с насильственными действиями в отношении  человека или животного.</p>
+				<ol>
+					<li>Нарушение установленного порядка совершения молитвенного обряда, а также религиозных обрядов, сопряженных с насильственными действиями в отношении  человека или животного -
+					влечет наложение административного штрафа на граждан в размере от пятисот до одной тысячи рублей, на организаторов в размере от одной тысячи до двух тысяч рублей.</li>
+					<li>Проведение религиозных обрядов, сопряженных с насильственными действиями в отношении  человека или животного в непосредственной близости от детских учреждений, а равно совершение молитвенного обряда, если это привело к нарушению общественного порядка или создало угрозу безопасности населения -
+					влечет наложение административного штрафа в размере от одной тысячи до двух тысяч рублей или административный арест на срок до пятнадцати суток."</li>
+				</ol>
+			</div>
+	</BODY>
+</HTML>
+		
+		

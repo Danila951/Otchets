@@ -1,0 +1,85 @@
+<HTML>
+	<HEAD>
+		<META charset=utf-8>
+		<STYLE>
+			.sasha {
+				background-color: gray;	
+				;}
+			td	{
+				margin:2px;
+				text-align:center;
+				font-size:14pt;
+				background-color: silver;
+				border-radius: 5%;				
+				;}
+			caption{
+				font-size:24pt;
+				;}
+			table{
+				border-radius: 3%;
+				padding:1%;
+				width:50%;
+				height:50%;
+				border:1px solid black;
+				;}
+		</STYLE>
+		<SCRIPT type="text/javascript">
+			window.onload = function()
+				{
+				let now = new Date();
+				
+				function writeCalendar(now)
+				{
+					let contentForTable = "<CAPTION id=caption align=center></CAPTION><TR><TD>Пн</TD><TD>Вт</TD><TD>Ср</TD><TD>Чт</TD><TD>Пт</TD><TD>Сб</TD><TD>Вс</TD></TR><TR>";
+					let MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+					let nextMonth = new Date(now.getFullYear(), now.getMonth() + 1);
+					nextMonth.setDate(nextMonth.getDate() - 1);
+					let lastDateOfMonth = nextMonth.getDate();					
+					let firstDateDay = new Date(now.getFullYear(), now.getMonth(), 1);
+					firstDateDay = firstDateDay.getDay();
+					if (firstDateDay == 0){firstDateDay = 7;}
+					for(let i = 1; i < firstDateDay; i++)
+						{
+						contentForTable = contentForTable + "<TD></TD>";
+						;}					
+					for(let i = 1; i <= lastDateOfMonth; i++)
+						{
+
+						contentForTable = contentForTable + "<TD id='date" + i + "'>" + i + "</TD>";
+						firstDateDay++;
+						if(firstDateDay == 8){contentForTable = contentForTable + "</TR><TR>"; firstDateDay = 1;}
+						;}				
+					calendar.innerHTML = contentForTable;
+					caption.innerHTML = MONTHS[now.getMonth()] + " " + now.getFullYear() + "<span id=buttonPreviousMonth>&#9650</span><span id=buttonNextMonth>&#9660</span>";
+					let currentCell = document.getElementById("date" + now.getDate());
+					currentCell.className = "sasha";						
+					buttonPreviousMonth.onclick = function()
+						{
+						now = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+						writeCalendar(now);
+						;} 
+					buttonNextMonth.onclick = function()
+						{
+						now = new Date(now.getFullYear(), now.getMonth() + 1, now.getDate());
+						writeCalendar(now);
+						;}					
+				;}
+				writeCalendar(now);
+				window.onclick = function(event)
+					{
+					if(event.target.tagName == "TD" && event.target.id != "")
+						{
+						document.getElementsByClassName('sasha')[0].className = "";
+						event.target.className = "sasha";
+						now.setDate(event.target.innerHTML);
+						}					
+					;}
+				;}
+		</SCRIPT>		
+	<BODY>
+		<TABLE  cellspacing=5 align=center id="calendar">
+		</TABLE>
+	</BODY>
+</HTML>
+		
+		

@@ -16,11 +16,18 @@ import java.util.List;
 public class InfoForm extends BaseForm {
     private JPanel outForm;
     JTable clientsTable;
+    private JButton ExitButton;
+    private JButton redactButton;
     DefaultTableModel table;
     public InfoForm() {
         super(400,200);
         setContentPane(outForm);
         setVisible(true);
+
+        ExitButton.addActionListener(e -> {
+            dispose();
+            new TestForm();
+        });
 
     }
 
@@ -42,10 +49,12 @@ public class InfoForm extends BaseForm {
             String fio = user.getFio();
             int year = user.getYearOfBirth();
             String profession = user.getProfession();
+
             Object[] gg = {fio, year, profession};
 
             table.addRow(gg);
         }
+
 
 
         clientsTable = new JTable(table);

@@ -14,6 +14,7 @@ public class TestForm extends BaseForm {
     private JTextField profField;
     private JButton saveButton;
     private JSpinner yearSpinner;
+    private JComboBox typeBox;
 
 
     public TestForm() {
@@ -48,6 +49,7 @@ public class TestForm extends BaseForm {
                 ex.printStackTrace();
             }
 
+            dispose();
             new InfoForm();
 
         });
