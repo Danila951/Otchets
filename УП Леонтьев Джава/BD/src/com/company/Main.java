@@ -9,6 +9,7 @@ import com.company.manager.UserEntytiManager;
 import com.company.ui.InfoForm;
 import com.company.ui.TestForm;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -53,8 +54,12 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-
-        new TestForm();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new InfoForm();
 
         //new InfoForm();
 

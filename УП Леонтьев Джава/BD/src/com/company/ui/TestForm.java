@@ -15,12 +15,20 @@ public class TestForm extends BaseForm {
     private JButton saveButton;
     private JSpinner yearSpinner;
     private JComboBox typeBox;
+    private JButton vievButton;
 
 
     public TestForm() {
         super(500,300);
         setContentPane(mainPanel);
 
+        InitButton();
+
+
+        setVisible(true);
+    }
+
+    private void InitButton() {
         saveButton.addActionListener(e -> {
             String fio = fioField.getText();
             if(fio.isEmpty() || fio.length() > 100) {
@@ -47,6 +55,7 @@ public class TestForm extends BaseForm {
                 UserEntytiManager.insert(user);
             } catch (SQLException ex) {
                 ex.printStackTrace();
+                return;
             }
 
             dispose();
@@ -54,7 +63,9 @@ public class TestForm extends BaseForm {
 
         });
 
-
-        setVisible(true);
+        vievButton.addActionListener(e -> {
+            dispose();
+            new InfoForm();
+        });
     }
 }
